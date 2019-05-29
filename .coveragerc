@@ -1,0 +1,6 @@
+[report]
+include =
+    src/mrs/*
+omit =
+    */test*
+    */upgrades/*
