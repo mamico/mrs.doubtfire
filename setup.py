@@ -39,11 +39,10 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
-        # -*- Extra requirements: -*-
-        'plone.api>=1.8.4',
-        'Products.GenericSetup>=1.8.2',
+        'plone.api',
         'setuptools',
         'z3c.jbot',
+        'collective.stats',
     ],
     extras_require={
         'test': [
@@ -52,14 +51,10 @@ setup(
             # Remove if your package shall be part of coredev.
             # plone_coredev tests as of 2016-04-01.
             'plone.testing>=5.0.0',
-            'plone.app.contenttypes',
-            'plone.app.robotframework[debug]',
         ],
     },
     entry_points="""
     [z3c.autoinclude.plugin]
     target = plone
-    [console_scripts]
-    update_locale = mrs.doubtfire.locales.update:update_locale
     """,
 )

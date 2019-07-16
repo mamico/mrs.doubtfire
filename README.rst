@@ -6,12 +6,18 @@
 mrs.doubtfire
 =============
 
-Tell me what your product does
+"Upstairs, my little nose miners! Go! Flee before me! Onward and upward! Go pump some neurons! Expand your craniums!"
+Euphegenia Doubtfire
+
 
 Features
 --------
 
-- Can be bullet points
+- reporting on the use of slow methods
+- write during navigation
+- browserview call during tal rendering
+- profiling slow browserview call, viewlet, portlet, subrequest
+- (collective.stats)
 
 
 Examples

@@ -15,6 +15,11 @@
 
   <include package=".browser" />
 
+  <include file="meta.zcml" />
+
+  <include file="metrics.zcml" />
+
+  <!--
   <include file="permissions.zcml" />
 
   <include file="upgrades.zcml" />
@@ -41,7 +46,6 @@
       factory=".setuphandlers.HiddenProfiles"
       name="mrs.doubtfire-hiddenprofiles"
       />
-
-  <!-- -*- extra stuff goes here -*- -->
+  -->
 
 </configure>
