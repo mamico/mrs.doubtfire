@@ -1,0 +1,20 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:doubtfire="http://namespaces.plone.org/doubtfire"
+    i18n_domain="mrs.doubtfire">
+
+    <doubtfire:metrics
+        module="plone.app.blocks.utils"
+        method="subrequest"
+        threshold="50"
+        level="debug"
+        />
+
+    <doubtfire:metrics
+        module="Products.CMFPlone.browser.navigation.CatalogNavigationTabs"
+        method="topLevelTabs"
+        threshold="50"
+        level="debug"
+        />
+
+</configure>
