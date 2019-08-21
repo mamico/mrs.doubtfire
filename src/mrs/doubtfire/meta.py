@@ -27,6 +27,10 @@ class IMetricsDirective(Interface):
         title=u"The module being patched",
         required=False)
     method = PythonIdentifier(title=u"Method or function to measure")
+    info = GlobalObject(
+        title=u"A function to get info.",
+        description=(u"Must take same parameters as method, or function, to measure"),
+        required=False)
     threshold = Int(
         title=u"Min execution time for logging (ms)",
         required=False,
@@ -34,7 +38,7 @@ class IMetricsDirective(Interface):
     level = TextLine(
         title=u"Logging level",
         required=False,
-        default='info')
+        default=u'info')
 
 
 def metrics(
@@ -42,6 +46,7 @@ def metrics(
         method,
         class_=None,
         module=None,
+        info=None,
         threshold=-1,
         level='info'):
     """ZCML directive handler"""
@@ -62,12 +67,12 @@ def metrics(
     _context.action(
         discriminator=None,
         callable=_do_perfmetrics,
-        args=(scope, method, threshold, level))
+        args=(scope, method, threshold, level, info))
     return
 
 
-def _do_perfmetrics(scope, method, threshold=-1, level='info'):
-    setattr(scope, method, metricmethod(threshold=threshold, level=level)(getattr(scope, method)))
+def _do_perfmetrics(scope, method, threshold=-1, level='info', info=None):
+    setattr(scope, method, metricmethod(threshold=threshold, level=level, info=info)(getattr(scope, method)))
 
 
 def emoji_by_elapsed(elapsed):
@@ -81,6 +86,7 @@ def emoji_by_elapsed(elapsed):
 
 # http://stackoverflow.com/questions/3931627/how-to-build-a-python-decorator-with-optional-parameters
 def metricmethod(*args, **kwargs):
+    info = None
     def _metricmethod(f):
         @functools.wraps(f)
         def wrapper(*args, **kwargs):
@@ -94,7 +100,13 @@ def metricmethod(*args, **kwargs):
                 if elapsed > threshold:
                     if level == 'debug':
                         logger.info(u'func=%s info=%s args=%s kwargs=%s elapsed=%sms threshold=%sms %s',
-                                    func_full_name, info, args, kwargs, elapsed, threshold, emoji_by_elapsed(elapsed))
+                                    func_full_name,
+                                    info(*args, **kwargs) if callable(info) else info,
+                                    args,
+                                    kwargs,
+                                    elapsed,
+                                    threshold,
+                                    emoji_by_elapsed(elapsed))
                     else:
                         logger.info(u'func=%s info=%s elapsed=%sms threshold=%sms %s',
                                     func_full_name, info, elapsed, threshold, emoji_by_elapsed(elapsed))

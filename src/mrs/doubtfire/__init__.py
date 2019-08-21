@@ -14,6 +14,7 @@ from plone.app.viewletmanager.manager import BaseOrderedViewletManager
 import functools
 
 
+# TODO: move to zcml with info/handler (see c.monkeypatcher)
 def addmetrics(f):
     @functools.wraps(f)
     def wrapper(self, viewlets):
@@ -25,7 +26,12 @@ def addmetrics(f):
     return wrapper
 
 
+# TODO: move to zcml with info/handler (see c.monkeypatcher)
 BaseOrderedViewletManager.sort = addmetrics(BaseOrderedViewletManager.sort)
+
+
+def portletmanager_info(self, *args, **kwargs):
+    return self.manager.__name__
 
 
 # BBB: monkey patch al logger di c.stats

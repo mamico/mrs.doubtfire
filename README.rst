@@ -30,7 +30,22 @@ This add-on can be seen in action at the following sites:
 Documentation
 -------------
 
-Full documentation for end users can be found in the "docs" folder, and is also available online at http://docs.plone.org/foo/bar
+Add metric using zcml ::
+
+  <configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:doubtfire="http://namespaces.plone.org/doubtfire"
+    i18n_domain="mrs.doubtfire">
+
+    <doubtfire:metrics
+        module="collective.my.module"
+        method="my_function"
+        threshold="50"
+        level="debug"
+        />
+
+  </configure>
+
 
 
 Translations
@@ -55,6 +70,12 @@ Install mrs.doubtfire by adding it to your buildout::
 
 
 and then running ``bin/buildout``
+
+Battery included::
+
+    zcml =
+        mrs.doubtfire-metrics
+
 
 
 Contribute

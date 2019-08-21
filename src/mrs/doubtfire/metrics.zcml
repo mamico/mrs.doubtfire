@@ -1,20 +1,41 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
     xmlns:doubtfire="http://namespaces.plone.org/doubtfire"
     i18n_domain="mrs.doubtfire">
 
+    <!-- tiles -->
     <doubtfire:metrics
+        zcml:condition="installed plone.app.blocks"
         module="plone.app.blocks.utils"
         method="subrequest"
         threshold="50"
         level="debug"
         />
 
+    <!-- navigation tree -->
     <doubtfire:metrics
         module="Products.CMFPlone.browser.navigation.CatalogNavigationTabs"
         method="topLevelTabs"
         threshold="50"
         level="debug"
+        />
+
+    <!-- portlet manager -->
+    <doubtfire:metrics
+        module="plone.portlets.manager.PortletManagerRenderer"
+        method="portletsToShow"
+        threshold="50"
+        level="debug"
+        info=".portletmanager_info"
+        />
+
+    <doubtfire:metrics
+        module="plone.portlets.manager.PortletManagerRenderer"
+        method="render"
+        threshold="50"
+        level="debug"
+        info=".portletmanager_info"
         />
 
 </configure>

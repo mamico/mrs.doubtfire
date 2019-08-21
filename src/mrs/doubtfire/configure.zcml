@@ -14,38 +14,7 @@
   <!--<includeDependencies package="." />-->
 
   <include package=".browser" />
-
   <include file="meta.zcml" />
-
   <include file="metrics.zcml" />
-
-  <!--
-  <include file="permissions.zcml" />
-
-  <include file="upgrades.zcml" />
-
-  <genericsetup:registerProfile
-      name="default"
-      title="mrs.doubtfire"
-      directory="profiles/default"
-      description="Installs the mrs.doubtfire add-on."
-      provides="Products.GenericSetup.interfaces.EXTENSION"
-      post_handler=".setuphandlers.post_install"
-      />
-
-  <genericsetup:registerProfile
-      name="uninstall"
-      title="mrs.doubtfire (uninstall)"
-      directory="profiles/uninstall"
-      description="Uninstalls the mrs.doubtfire add-on."
-      provides="Products.GenericSetup.interfaces.EXTENSION"
-      post_handler=".setuphandlers.uninstall"
-      />
-
-  <utility
-      factory=".setuphandlers.HiddenProfiles"
-      name="mrs.doubtfire-hiddenprofiles"
-      />
-  -->
 
 </configure>
