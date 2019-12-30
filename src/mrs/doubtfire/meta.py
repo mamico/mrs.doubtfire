@@ -77,11 +77,11 @@ def _do_perfmetrics(scope, method, threshold=-1, level='info', info=None):
 
 def emoji_by_elapsed(elapsed):
     if elapsed < 20:
-        return '\U0001F60E'
+        return u'\U0001F60E'
     elif elapsed < 100:
-        return '\U0001F914'
+        return u'\U0001F914'
     else:
-        return '\U0001F4A9'
+        return u'\U0001F4A9'
 
 
 # http://stackoverflow.com/questions/3931627/how-to-build-a-python-decorator-with-optional-parameters
