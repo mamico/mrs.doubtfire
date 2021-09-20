@@ -78,11 +78,11 @@ def _do_perfmetrics(scope, method, threshold=-1, level='info', info=None):
 
 def emoji_by_elapsed(elapsed):
     if elapsed < 20:
-        return u'\U0001F60E'
+        return u'\U0001F60E'  # GOOD
     elif elapsed < 100:
-        return u'\U0001F914'
+        return u'\U0001F914'  # MUMBLE
     else:
-        return u'\U0001F4A9'
+        return u'\U0001F4A9'  # SHIT
 
 
 # http://stackoverflow.com/questions/3931627/how-to-build-a-python-decorator-with-optional-parameters
@@ -91,8 +91,11 @@ def metricmethod(*args, **kwargs):
     def _metricmethod(f):
         @functools.wraps(f)
         def wrapper(*args, **kwargs):
-            func_name = f.__name__
-            func_full_name = '%s.%s' % (f.__module__, func_name)
+            try:
+                func_name = f.__name__
+                func_full_name = '%s.%s' % (f.__module__, func_name)
+            except AttributeError:
+                func_full_name = f.__self__.__name__
             start = time()
             try:
                 return f(*args, **kwargs)
