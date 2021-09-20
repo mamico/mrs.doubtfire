@@ -1,0 +1,21 @@
+  <configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:doubtfire="http://namespaces.plone.org/doubtfire"
+    i18n_domain="mrs.doubtfire">
+
+    <doubtfire:metrics
+        module="Products.ZCatalog.ZCatalog.ZCatalog"
+        method="searchResults" 
+        threshold="-1"
+        level="debug"
+        /> 
+    
+    <doubtfire:metrics
+        module="Products.ZCatalog.ZCatalog.ZCatalog"
+        method="search" 
+        threshold="-1"
+        level="debug"
+        /> 
+    
+  </configure>
+
