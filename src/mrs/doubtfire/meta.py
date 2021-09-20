@@ -72,6 +72,7 @@ def metrics(
 
 
 def _do_perfmetrics(scope, method, threshold=-1, level='info', info=None):
+    logger.info(u"👵 monitoring %s.%s threshold=%s, level=%s, info=%s", scope.__name__, method, threshold, level, info)
     setattr(scope, method, metricmethod(threshold=threshold, level=level, info=info)(getattr(scope, method)))
 
 
