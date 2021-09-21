@@ -89,6 +89,11 @@ def emoji_by_elapsed(elapsed):
 def metricmethod(*args, **kwargs):
     info = None
     def _metricmethod(f):
+
+        # AttributeError: 'BoundPageTemplate' object has no attribute '__name__'
+        if not hasattr(f, '__name__'):
+            return f
+
         @functools.wraps(f)
         def wrapper(*args, **kwargs):
             try:
