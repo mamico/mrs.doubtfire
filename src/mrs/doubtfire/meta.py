@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """ZCML handling"""
 from time import time
+import traceback
 import functools
 from zope.configuration.exceptions import ConfigurationError
 from zope.configuration.fields import GlobalObject, PythonIdentifier
@@ -102,7 +103,7 @@ def metricmethod(*args, **kwargs):
             finally:
                 elapsed = int((time() - start) * 1000.0)
                 if elapsed > threshold:
-                    if level == 'debug':
+                    if level in ("debug", "trace"):
                         logger.info(u'func=%s info=%s args=%s kwargs=%s elapsed=%sms threshold=%sms %s',
                                     func_full_name,
                                     info(*args, **kwargs) if callable(info) else info,
@@ -114,6 +115,8 @@ def metricmethod(*args, **kwargs):
                     else:
                         logger.info(u'func=%s info=%s elapsed=%sms threshold=%sms %s',
                                     func_full_name, info, elapsed, threshold, emoji_by_elapsed(elapsed))
+                    if level == "trace":
+                        logger.info(''.join(traceback.format_stack()[:-1]))
         return wrapper
     if 'threshold' not in kwargs and 'level' not in kwargs and 'info' not in kwargs and callable(args[0]):
         # No arguments, this is the decorator
