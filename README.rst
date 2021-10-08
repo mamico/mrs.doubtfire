@@ -45,16 +45,6 @@ Add metric using zcml ::
 
   </configure>
 
-
-
-Translations
-------------
-
-This product has been translated into
-
-- Klingon (thanks, K'Plai)
-
-
 Installation
 ------------
 
