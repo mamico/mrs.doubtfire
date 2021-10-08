@@ -13,18 +13,17 @@ Euphegenia Doubtfire
 Features
 --------
 
-- reporting on the use of slow methods
-- write during navigation
-- browserview call during tal rendering
-- profiling slow browserview call, viewlet, portlet, subrequest
-- (collective.stats)
+☐ reporting on the use of slow methods
 
+☐ write during navigation
 
-Examples
---------
+☐ browserview call during tal rendering
 
-This add-on can be seen in action at the following sites:
-- Is there a page on the internet where everybody can see the features?
+☑ profiling slow browserview call, viewlet, portlet, subrequest, catalog
+
+☑ extensible
+
+☑ (collective.stats)
 
 
 Documentation
@@ -75,8 +74,8 @@ Battery included::
 
     zcml =
         mrs.doubtfire-metrics
-
-
+        mrs.doubtfire-catalog
+        
 
 Contribute
 ----------
@@ -85,12 +84,6 @@ Contribute
 - Source Code: https://github.com/collective/mrs.doubtfire
 - Documentation: https://docs.plone.org/foo/bar
 
-
-Support
--------
-
-If you are having issues, please let us know.
-We have a mailing list located at: project@example.com
 
 
 License
