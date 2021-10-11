@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """ZCML handling"""
-from mrs.mrs.doubtfire import logger
+from mrs.doubtfire import logger
 from time import time
 from zope.configuration.exceptions import ConfigurationError
 from zope.configuration.fields import GlobalObject, PythonIdentifier
