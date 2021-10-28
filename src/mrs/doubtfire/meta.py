@@ -1,20 +1,15 @@
 # -*- coding: utf-8 -*-
 """ZCML handling"""
+from mrs.doubtfire import logger
 from time import time
-import traceback
-import functools
 from zope.configuration.exceptions import ConfigurationError
 from zope.configuration.fields import GlobalObject, PythonIdentifier
-from zope.event import notify
-from zope.interface import Interface, implementer
-from zope.schema import Int, Bool, TextLine
+from zope.globalrequest import getRequest
+from zope.interface import Interface
+from zope.schema import Int, TextLine
 
-import pkg_resources
-import re
-from six.moves import map
-
-from . import interfaces
-from . import logger
+import functools
+import traceback
 
 
 class IMetricsDirective(Interface):
@@ -89,6 +84,7 @@ def emoji_by_elapsed(elapsed):
 # http://stackoverflow.com/questions/3931627/how-to-build-a-python-decorator-with-optional-parameters
 def metricmethod(*args, **kwargs):
     info = None
+
     def _metricmethod(f):
 
         # AttributeError: 'BoundPageTemplate' object has no attribute '__name__'
@@ -109,6 +105,7 @@ def metricmethod(*args, **kwargs):
                 elapsed = int((time() - start) * 1000.0)
                 if elapsed > threshold:
                     if level in ("debug", "trace"):
+                        logger.info("Request URL: {}".format(getRequest().get("URL", "")))
                         logger.info(u'func=%s info=%s args=%s kwargs=%s elapsed=%sms threshold=%sms %s',
                                     func_full_name,
                                     info(*args, **kwargs) if callable(info) else info,
@@ -123,6 +120,7 @@ def metricmethod(*args, **kwargs):
                     if level == "trace":
                         logger.info(''.join(traceback.format_stack()[:-1]))
         return wrapper
+
     if 'threshold' not in kwargs and 'level' not in kwargs and 'info' not in kwargs and callable(args[0]):
         # No arguments, this is the decorator
         # Set default values for the arguments
