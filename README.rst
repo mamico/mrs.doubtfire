@@ -45,7 +45,7 @@ Add metric using zcml ::
 
   </configure>
 
-Or wrapping/monkeypatching the method ::
+Or wrapping/monkeypatching the function ::
  
    from mrs.doubtfire.meta import metricmethod
    from my.package import MyClass
