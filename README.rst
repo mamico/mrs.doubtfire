@@ -83,8 +83,6 @@ Contribute
 
 - Issue Tracker: https://github.com/collective/mrs.doubtfire/issues
 - Source Code: https://github.com/collective/mrs.doubtfire
-- Documentation: https://docs.plone.org/foo/bar
-
 
 
 License
