@@ -61,7 +61,7 @@ Install mrs.doubtfire by adding it to your buildout::
 
     ...
 
-    eggs =
+    eggs +=
         mrs.doubtfire
 
 
@@ -69,10 +69,14 @@ and then running ``bin/buildout``
 
 Battery included::
 
-    zcml =
+    zcml +=
         mrs.doubtfire-metrics
         mrs.doubtfire-catalog
-        
+
+Monitoring `pas.plugins.ldap`::
+
+    zcml +=
+        mrs.doubtfire-ldap
 
 Contribute
 ----------
