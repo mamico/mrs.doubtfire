@@ -1,0 +1,64 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    xmlns:doubtfire="http://namespaces.plone.org/doubtfire"
+    i18n_domain="mrs.doubtfire">
+
+    <!-- pas.plugins.ldap -->
+    <configure zcml:condition="installed pas.plugins.ldap">
+        <doubtfire:metrics
+            module="pas.plugins.ldap.plugin.LDAPPlugin"
+            method="authenticateCredentials"
+            threshold="50"
+            level="debug"
+        />
+        <doubtfire:metrics
+            module="pas.plugins.ldap.plugin.LDAPPlugin"
+            method="enumerateGroups"
+            threshold="50"
+            level="debug"
+        />
+        <doubtfire:metrics
+            module="pas.plugins.ldap.plugin.LDAPPlugin"
+            method="getGroupsForPrincipal"
+            threshold="50"
+            level="debug"
+        />
+        <doubtfire:metrics
+            module="pas.plugins.ldap.plugin.LDAPPlugin"
+            method="enumerateUsers"
+            threshold="50"
+            level="debug"
+        />
+        <doubtfire:metrics
+            module="pas.plugins.ldap.plugin.LDAPPlugin"
+            method="getRolesForPrincipal"
+            threshold="50"
+            level="debug"
+        />
+        <doubtfire:metrics
+            module="pas.plugins.ldap.plugin.LDAPPlugin"
+            method="getPropertiesForUser"
+            threshold="50"
+            level="debug"
+        />
+        <doubtfire:metrics
+            module="pas.plugins.ldap.plugin.LDAPPlugin"
+            method="getGroupById"
+            threshold="50"
+            level="debug"
+        />
+        <doubtfire:metrics
+            module="pas.plugins.ldap.plugin.LDAPPlugin"
+            method="getGroupIds"
+            threshold="50"
+            level="debug"
+        />
+        <doubtfire:metrics
+            module="pas.plugins.ldap.plugin.LDAPPlugin"
+            method="getGroupMembers"
+            threshold="50"
+            level="debug"
+        />
+    </configure>
+</configure>

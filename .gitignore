@@ -29,6 +29,7 @@ package.json
 pip-selfcheck.json
 report.html
 .vscode/
+dist/
 # excludes
 !.coveragerc
 !.editorconfig
@@ -37,3 +38,4 @@ report.html
 !.gitkeep
 !.travis.yml
 !src/mrs
+
