@@ -30,6 +30,8 @@ pip-selfcheck.json
 report.html
 .vscode/
 dist/
+.python-version
+pyvenv.cfg
 # excludes
 !.coveragerc
 !.editorconfig

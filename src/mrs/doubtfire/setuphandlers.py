@@ -9,7 +9,7 @@ class HiddenProfiles(object):
     def getNonInstallableProfiles(self):
         """Hide uninstall profile from site-creation and quickinstaller."""
         return [
-            'mrs.doubtfire:uninstall',
+            "mrs.doubtfire:uninstall",
         ]
 
 
