@@ -46,10 +46,7 @@ class TestMeta(unittest.TestCase):
 
             res = fun(**kwargs)
             self.assertEqual(res, kwargs)
-            logs = [
-                re.sub(r"[0-9]{4}+ms", "...", row)
-                for row in log.output
-            ]
+            logs = [re.sub(r"[0-9]{4}ms", "...", row) for row in log.output]
             self.assertEqual(
                 [
                     "INFO:mrs.doubtfire:Request URL: http://nohost",
