@@ -1,29 +1,26 @@
 # -*- coding: utf-8 -*-
 """Init and utils."""
-from zope.i18nmessageid import MessageFactory
-
-import logging
-
-
-_ = MessageFactory("mrs.doubtfire")
-logger = logging.getLogger(__name__)
-
-
-# BBB: usare monkeypatcher
+from collective.stats.pubtime import logger as stats_logger
 from mrs.doubtfire.meta import metricmethod
 from plone.app.viewletmanager.manager import BaseOrderedViewletManager
 
 import functools
+import logging
+
+
+logger = logging.getLogger(__name__)
 
 
 # TODO: move to zcml with info/handler (see c.monkeypatcher)
 def addmetrics(f):
     @functools.wraps(f)
     def wrapper(self, viewlets):
-        func_name = f.__name__
+        # func_name = f.__name__
         viewlets = f(self, viewlets)
         for name, viewlet in viewlets:
-            viewlet.render = metricmethod(threshold=50, info=name)(viewlet.render)
+            viewlet.render = metricmethod(threshold=50, info=name)(
+                viewlet.render
+            )  # noqa E501
         return viewlets
 
     return wrapper
@@ -37,10 +34,6 @@ def portletmanager_info(self, *args, **kwargs):
     return self.manager.__name__
 
 
-# BBB: monkey patch al logger di c.stats
-from collective.stats.pubtime import logger as stats_logger
-
-
 stats_logger_info_orig = stats_logger.info
 
 
@@ -50,7 +43,7 @@ def stats_logger_info(msg, *args, **kwargs):
         if int(mo) > 1 and rm not in ("POST", "PUT", "DELETE"):
             # objects modified ...
             logger.warning(
-                "write during GET/HEAD request method:%s path:%s object modified:%s",
+                "write during GET/HEAD request method:%s path:%s object modified:%s",  # noqa E501
                 rm,
                 pa,
                 mo,

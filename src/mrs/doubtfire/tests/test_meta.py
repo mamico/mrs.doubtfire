@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
+from mrs.doubtfire.meta import emoji_by_elapsed
 from mrs.doubtfire.meta import logger
 from mrs.doubtfire.meta import metricmethod
 from mrs.doubtfire.meta import sanitize_kwargs
-from mrs.doubtfire.meta import emoji_by_elapsed
 from mrs.doubtfire.testing import MRS_DOUBTFIRE_INTEGRATION_TESTING  # noqa
 from plone.testing.z2 import Browser
 
@@ -70,8 +70,8 @@ class TestMeta(unittest.TestCase):
                     "info=plone.footer elapsed=... threshold=... ...",
                 ],
                 [
-                    re.sub(r"(object at 0x[0-9a-f]+|[0-9]+ms|s[😎🤔💩])", "...", l)
-                    for l in log.output
+                    re.sub(r"(object at 0x[0-9a-f]+|[0-9]+ms|s[😎🤔💩])", "...", row)
+                    for row in log.output
                 ],
             )
 
