@@ -1,6 +1,5 @@
 [report]
 include =
-    src/mrs/*
+  src/*
 omit =
-    */test*
-    */upgrades/*
+  src/plone/restapi/tests/*

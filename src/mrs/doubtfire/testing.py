@@ -15,6 +15,7 @@ class MrsDoubtfireLayer(PloneSandboxLayer):
         # The z3c.autoinclude feature is disabled in the Plone fixture base
         # layer.
         self.loadZCML(package=mrs.doubtfire)
+        self.loadZCML(package=mrs.doubtfire, name="metrics.zcml")
 
 
 MRS_DOUBTFIRE_FIXTURE = MrsDoubtfireLayer()
