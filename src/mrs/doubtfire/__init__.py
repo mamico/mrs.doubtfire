@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """Init and utils."""
 from collective.stats.pubtime import logger as stats_logger
-from mrs.doubtfire.meta import metricmethod
 from plone.app.viewletmanager.manager import BaseOrderedViewletManager
 
 import functools
@@ -13,6 +12,8 @@ logger = logging.getLogger(__name__)
 
 # TODO: move to zcml with info/handler (see c.monkeypatcher)
 def addmetrics(f):
+    from mrs.doubtfire.meta import metricmethod
+
     @functools.wraps(f)
     def wrapper(self, viewlets):
         # func_name = f.__name__
