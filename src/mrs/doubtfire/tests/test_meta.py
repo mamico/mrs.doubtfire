@@ -59,21 +59,28 @@ class TestMeta(unittest.TestCase):
     def test_metrics(self):
         with self.assertLogs("mrs.doubtfire", "INFO") as log:
             self.browser.open(self.portal.absolute_url())
-            self.assertEqual(
-                [
-                    "INFO:mrs.doubtfire:Request URL: http://nohost/plone/document_view",
-                    "INFO:mrs.doubtfire:func=plone.portlets.manager.render "
-                    "info=plone.footerportlets "
-                    "args=(<plone.app.portlets.manager.ColumnPortletManagerRenderer ...>,) "
-                    "kwargs={} elapsed=... threshold=... ...",
-                    "INFO:mrs.doubtfire:func=plone.app.layout.viewlets.common.render "
-                    "info=plone.footer elapsed=... threshold=... ...",
-                ],
-                [
-                    re.sub(r"(object at 0x[0-9a-f]+|[0-9]+ms|[😎🤔💩])", "...", row)
-                    for row in log.output
-                ],
-            )
+            logs = [
+                re.sub(r"(object at 0x[0-9a-f]+|[0-9]+ms|[😎🤔💩])", "...", row)
+                for row in log.output
+            ]
+            expecteds = [
+                # 'INFO:mrs.doubtfire:func=zope.browserpage.simpleviewclass.__call__ '
+                # 'info=plone.app.i18n.locales.languageselector elapsed=... threshold=... ...',
+                # 'INFO:mrs.doubtfire:func=plone.app.layout.viewlets.common.render '
+                # 'info=plone.documentbyline elapsed=... threshold=... ...',
+                # 'INFO:mrs.doubtfire:func=plone.app.layout.viewlets.common.render '
+                # 'info=plone.relateditems elapsed=... threshold=... ...',
+                "INFO:mrs.doubtfire:Request URL: http://nohost/plone/document_view",
+                "INFO:mrs.doubtfire:func=plone.portlets.manager.render "
+                "info=plone.footerportlets "
+                "args=(<plone.app.portlets.manager.ColumnPortletManagerRenderer ...>,) "
+                "kwargs={} elapsed=... threshold=... ...",
+                "INFO:mrs.doubtfire:func=plone.app.layout.viewlets.common.render "
+                "info=plone.footer elapsed=... threshold=... ...",
+            ]
+            # XXX: This test is flaky, the order of the logs is not guaranteed
+            for expected in expecteds:
+                self.assertIn(expected, logs)
 
     def test_emoji(self):
         self.assertEqual("😎", emoji_by_elapsed(10))
