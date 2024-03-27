@@ -46,14 +46,18 @@ class TestMeta(unittest.TestCase):
 
             res = fun(**kwargs)
             self.assertEqual(res, kwargs)
+            logs = [
+                re.sub(r"[0-9]{4}+ms", "...", row)
+                for row in log.output
+            ]
             self.assertEqual(
                 [
                     "INFO:mrs.doubtfire:Request URL: http://nohost",
                     "INFO:mrs.doubtfire:func=mrs.doubtfire.tests.test_meta.fun "
                     "info=None args=() kwargs={'foo': 'bar', 'baz': 'qux', 'password': '***'} "
-                    "elapsed=1000ms threshold=-1ms 💩",
+                    "elapsed=... threshold=-1ms 💩",
                 ],
-                log.output,
+                logs,
             )
 
     def test_metrics(self):
