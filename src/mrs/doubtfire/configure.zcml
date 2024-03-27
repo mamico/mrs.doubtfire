@@ -2,7 +2,8 @@
     xmlns="http://namespaces.zope.org/zope"
     xmlns:i18n="http://namespaces.zope.org/i18n"
     xmlns:plone="http://namespaces.plone.org/plone"
-    i18n_domain="mrs.doubtfire">
+    i18n_domain="mrs.doubtfire"
+    >
 
   <include file="meta.zcml" />
   <include file="metrics.zcml" />

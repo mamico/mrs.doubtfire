@@ -1,16 +1,17 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:meta="http://namespaces.zope.org/meta"
-    i18n_domain="mrs.doubtfire">
+    i18n_domain="mrs.doubtfire"
+    >
 
-    <meta:directives namespace="http://namespaces.plone.org/doubtfire">
+  <meta:directives namespace="http://namespaces.plone.org/doubtfire">
 
-        <meta:directive
-            name="metrics"
-            schema=".meta.IMetricsDirective"
-            handler=".meta.metrics"
-            />
+    <meta:directive
+        name="metrics"
+        handler=".meta.metrics"
+        schema=".meta.IMetricsDirective"
+        />
 
-    </meta:directives>
+  </meta:directives>
 
 </configure>
