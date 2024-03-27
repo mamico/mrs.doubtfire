@@ -70,7 +70,7 @@ class TestMeta(unittest.TestCase):
                     "info=plone.footer elapsed=... threshold=... ...",
                 ],
                 [
-                    re.sub(r"(object at 0x[0-9a-f]+|[0-9]+ms|s[😎🤔💩])", "...", row)
+                    re.sub(r"(object at 0x[0-9a-f]+|[0-9]+ms|[😎🤔💩])", "...", row)
                     for row in log.output
                 ],
             )
